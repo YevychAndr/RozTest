@@ -16,7 +16,7 @@ public class BaseTest {
     @BeforeMethod
     public void start() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.navigate().to(" https://www.rozetka.com.ua/");
         wait = new WebDriverWait(driver, 10);

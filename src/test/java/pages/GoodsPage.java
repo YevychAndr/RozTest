@@ -5,6 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+import java.util.Random;
+
+
 public class GoodsPage extends BasePage {
 
     public GoodsPage(WebDriver driver) {
@@ -13,29 +17,16 @@ public class GoodsPage extends BasePage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//div[@name='goods_list']//div[2]//button[1]")
-    public WebElement btnBuyFirstGoods;
-
-    @FindBy(xpath = "//div[@name='goods_list']//div[5]//button[1]")
-    public WebElement btnBuySecondGoods;
-
-    @FindBy(xpath = "//div[@name='goods_list']//div[5]//button[1]")
-    public WebElement btnBuyThirdGoods;
+    @FindBy(xpath = "//div[@name='goods_list']//button[1]")
+    public List<WebElement> listGoodsItems;
 
 
-    public AddedToCartPage buyGood() {
-        click(btnBuyFirstGoods);
+    public AddedToCartPage buyGoods() {
+        Random rnd = new Random();
+        int i = rnd.nextInt(listGoodsItems.size());
+        listGoodsItems.get(i).click();
         return new AddedToCartPage(driver);
     }
 
-    public AddedToCartPage buyGoods2() {
-        click(btnBuySecondGoods);
-        return new AddedToCartPage(driver);
-    }
-
-    public AddedToCartPage buyGoods3(){
-        click(btnBuyThirdGoods);
-        return new AddedToCartPage(driver);
-    }
 
 }

@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -27,18 +30,30 @@ public class CartPage extends BasePage{
     @FindBy(name = "delete")
     public WebElement delWithoutSave;
 
-    @FindBy(xpath = "//h2[@class='empty-cart-title inline sprite-side']")
-    public WebElement cartEmpty;
 
     public void checkSumCart(){
-        checkSum(listPrice, costGoods);
+        int sum = 0;
+        for (int i = 0; i < listPrice.size(); i++) {
+            sum = sum + (Integer.parseInt(listPrice.get(i).getText().replace(" ", "")));
+        }
+        int realCostGoods = Integer.parseInt(costGoods.getText().replace(" ", ""));
+        Assert.assertEquals(realCostGoods, sum, "Загальна сума, вказана вкорзині НЕ відповідає сумі цін, всіх добавлених.");
     }
 
     public void dellAllGoods() throws InterruptedException {
-        dellGoods(listPrice, delGoods, delWithoutSave);
+        int k = listPrice.size();
+        {
+            for (int i = 0; i < k; i++) {
+                delGoods.click();
+                //wait.until(ExpectedConditions.elementToBeClickable(By.name("delete")));
+                delWithoutSave.click();
+                Thread.sleep(3000);
+                //wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div[name=popup-move]")));
+            }
+        }
     }
 
-    public void checkCartEmpty(){
-        checkCart(cartEmpty);
-    }
+    public void checkCartEmpty() {
+        Assert.assertTrue((listPrice).isEmpty(), "Корзина НЕ пуста.");
+        }
 }

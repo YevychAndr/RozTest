@@ -1,9 +1,16 @@
 package pages;
 
+import model.MainMenu;
+import model.SubMenu;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+
+import java.util.List;
 
 public class AuthorizedPage extends BasePage  {
 
@@ -11,30 +18,19 @@ public class AuthorizedPage extends BasePage  {
         super(driver);
         PageFactory.initElements(driver, this);
         this.driver = driver;
-    }
+        }
+
+    @FindBy(css = "#fat-menu li.f-menu-l-i")
+    public List<WebElement> mainMenuItems;
+
+    @FindBy(css = "li.f-menu-sub-l-i")
+    public List<WebElement> subMenuItems;
+
+    @FindBy(id = "header_user_menu_parent")
+    public WebElement btnLogin;
 
     @FindBy(id = "fat_menu_btn")
     public WebElement btnCatalogGoods;
-
-    @FindBy(id = "9017")
-    public WebElement categoryGoods;
-
-    @FindBy(id = "8261")
-    public WebElement categoryGoods2;
-
-    @FindBy(id = "13224")
-    public WebElement categoryGoods3;
-
-    @FindBy(xpath = "//a[contains(text(),'Катушки')]")
-    //@FindBy(xpath = "//li[8]//ul[2]/li[1]/ul[1]/li[3]/a[1]")
-    public WebElement linkToCoil;
-
-    @FindBy(xpath = "//a[@class='f-menu-sub-l-i-link novisited'][contains(text(),'Тачки')]")
-    //@FindBy(xpath = "//li[7]//ul[2]/li[1]/ul[1]/li[4]/a[1]")
-    public WebElement linkWheelbarrow;
-
-    @FindBy(xpath = "//a[@class='f-menu-sub-l-i-link novisited'][contains(text(),'Радионяни')]")
-    public WebElement linkBabymonitors;
 
     @FindBy(xpath = "//a[@name='profile']")
     public WebElement btnProf;
@@ -59,66 +55,72 @@ public class AuthorizedPage extends BasePage  {
 
 
 
+    public LoginPage callLoginPage() {
+        click(btnLogin);
+        return new LoginPage(driver);
+    }
+
+    public void checkNotLogged (){
+        Assert.assertEquals("войдите в личный кабинет", btnLogin.getText(), "Ви вже залогінені.");
+    }
+
+    public void checkLogged() {
+        //Thread.sleep(3000);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='popup-css popup-auth']")));
+        Assert.assertTrue(btnProf.isDisplayed(), "Ви не залогінені");
+    }
+
     public void openCatalogGoods(){
         moveTo(btnCatalogGoods);
     }
 
-    public void openCategoryGoods(){
-        moveTo(categoryGoods);
+    public void openCategoryGoods(MainMenu menuToOpen){
+        for (WebElement item: mainMenuItems){
+            if(item.getAttribute("id").equals(menuToOpen.getElementId())){
+                moveTo(item);
+                return;
+            }
+        }
     }
 
-    public GoodsPage openSubcategoryGoods() {
-        click(linkToCoil);
-        return new GoodsPage(driver);
-    }
-
-    public void openCategoryGoods2() {
-        moveTo(categoryGoods2);
-    }
-
-    public GoodsPage openSubcategoryGoods2(){
-        click(linkWheelbarrow);
-        return new GoodsPage(driver);
-    }
-
-    public void openCategoryGoods3(){
-        moveTo(categoryGoods3);
-    }
-
-    public GoodsPage openSubcategoryGoods3(){
-        click(linkBabymonitors);
-        return new GoodsPage(driver);
+    public GoodsPage openSubcategoryGoods(SubMenu subMenuToOpen) {
+        for (WebElement item: subMenuItems){
+            if(item.getText().equals(subMenuToOpen.getElementText())){
+                click(item);
+            return new GoodsPage(driver);
+            }
+        }
+        return null;
     }
 
     public CartPage goCart() {
         moveTo(btnProf);
         click(btnCart);
-
         return new CartPage(driver);
     }
 
     public QuestionAnswerPage callQuestionAnswer() {
         click(linkQuestionAnswer);
-        return new QuestionAnswerPage();
+        return new QuestionAnswerPage(driver);
     }
 
     public CreditPage callCreditPage() {
         click(linkCredit);
-        return new CreditPage();
+        return new CreditPage(driver);
     }
 
     public ShippingPaymenPage callShippingPaymen() {
         click(linkShippingPayment);
-        return new ShippingPaymenPage();
+        return new ShippingPaymenPage(driver);
     }
 
     public GuaranteePage callGuaranteePage() {
         click(linkGuarantee);
-        return new GuaranteePage();
+        return new GuaranteePage(driver);
     }
 
     public ContactsPage callContactsPage() {
         click(linkContacts);
-        return new ContactsPage();
+        return new ContactsPage(driver);
     }
 }

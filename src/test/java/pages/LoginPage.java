@@ -22,17 +22,11 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//button[@name='auth_submit']")
     public WebElement btnAuthSbmit;
 
-    @FindBy(xpath = "//input[@name='login']")
-    public WebElement logged;
-
-    public AuthorizedPage login() {
-        insertLogin(loginField);
-        insertPassword(passwordField);
+    public AuthorizedPage login(String login, String password){
+        loginField.sendKeys(login);
+        passwordField.sendKeys(password);
         click(btnAuthSbmit);
         return new AuthorizedPage(driver);
     }
 
-    public void checkLoginPageOpen(){
-        check(logged);
-    }
 }
