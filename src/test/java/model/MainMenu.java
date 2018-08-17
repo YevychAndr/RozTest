@@ -2,9 +2,9 @@ package model;
 
 public enum MainMenu {
     SPORT("9017"),
-    DACHA("8261"),
-    DYTYACHITOVARY("13224"),
-    KANCTOVARY("14127");
+    COTTAGE("8261"),
+    BABYGOODS("13224"),
+    STATIONERY("14127");
 
 
     private String elementId;

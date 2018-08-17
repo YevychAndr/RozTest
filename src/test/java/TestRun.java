@@ -1,4 +1,5 @@
 import model.MainMenu;
+import model.StaticPages;
 import model.SubMenu;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -15,7 +16,7 @@ public class TestRun extends BaseTest{
     }
 
     @Test(dataProvider = "loginData")
-    public void test(String login, String password) throws InterruptedException {
+    public void test(String login, String password)  {
         AuthorizedPage authorizedPage = new AuthorizedPage(driver);
         authorizedPage.checkNotLogged();
         LoginPage loginPage = authorizedPage.callLoginPage();
@@ -24,18 +25,18 @@ public class TestRun extends BaseTest{
 
         authorizedPage.openCatalogGoods();
         authorizedPage.openCategoryGoods(MainMenu.SPORT);
-        GoodsPage goodsPage = authorizedPage.openSubcategoryGoods(SubMenu.KATUSHKY);
+        GoodsPage goodsPage = authorizedPage.openSubcategoryGoods(SubMenu.COIL);
 
         AddedToCartPage addedToCartPage = goodsPage.buyGoods();
         addedToCartPage.continueShopping();
         authorizedPage.openCatalogGoods();
-        authorizedPage.openCategoryGoods(MainMenu.DACHA);
-        authorizedPage.openSubcategoryGoods(SubMenu.TACHKY);
+        authorizedPage.openCategoryGoods(MainMenu.COTTAGE);
+        authorizedPage.openSubcategoryGoods(SubMenu.WHEELBARROW);
         goodsPage.buyGoods();
         addedToCartPage.continueShopping();
         authorizedPage.openCatalogGoods();
-        authorizedPage.openCategoryGoods(MainMenu.DYTYACHITOVARY);
-        authorizedPage.openSubcategoryGoods(SubMenu.RADIONYANYA);
+        authorizedPage.openCategoryGoods(MainMenu.BABYGOODS);
+        authorizedPage.openSubcategoryGoods(SubMenu.BABYRADIO);
         goodsPage.buyGoods();
         addedToCartPage.continueShopping();
 
@@ -45,16 +46,14 @@ public class TestRun extends BaseTest{
 
         cartPage.checkCartEmpty();
 
-        QuestionAnswerPage questionAnswerPage = authorizedPage.callQuestionAnswer();
-        questionAnswerPage.checkQuestionAnswerPageOpen();
-        CreditPage creditPage = authorizedPage.callCreditPage();
-        creditPage.checkCreditPageOpen();
-        ShippingPaymenPage shippingPaymenPage = authorizedPage.callShippingPaymen();
-        shippingPaymenPage.checkShippingPaymenPageOpen();
-        GuaranteePage guaranteePage = authorizedPage.callGuaranteePage();
-        guaranteePage.checkGuaranteePageOpen();
-        ContactsPage contactsPage = authorizedPage.callContactsPage();
-        contactsPage.checkContactsPageOpen();
+        GenericStaticPage questionAnswerPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.QUESTIONANSWER);
+        authorizedPage.isPageOpened(QuestionAnswerPage.hederExpected);
+        GenericStaticPage creditPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.CREDIT);
+        GenericStaticPage shippingPaymenPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.SHIPPINGPAYMENT);
+        GenericStaticPage warrantyPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.WARRANTY);
+        GenericStaticPage contactsPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.CONTACTS);
+
+
     }
 
 }

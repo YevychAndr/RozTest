@@ -1,10 +1,10 @@
 package model;
 
 public enum SubMenu {
-    KATUSHKY("Катушки"),
-    LASTY("Ласты"),
-    TACHKY("Тачки"),
-    RADIONYANYA("Радионяни");
+    COIL("Катушки"),
+    FLUTTER("Ласты"),
+    WHEELBARROW("Тачки"),
+    BABYRADIO("Радионяни");
 
     private String elementText;
 

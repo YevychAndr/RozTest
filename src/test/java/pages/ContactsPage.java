@@ -9,9 +9,6 @@ public class ContactsPage extends BasePage {
         this.driver = driver;
     }
 
-    public String heder = "Консультации и заказ по телефонам";
+    public static String hederExpected = "Консультации и заказ по телефонам";
 
-    public void checkContactsPageOpen() {
-        checkCorrectPageOpen(heder);
-    }
 }

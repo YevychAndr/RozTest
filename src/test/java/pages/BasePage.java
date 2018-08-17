@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.util.List;
+
 public class BasePage {
 
     protected WebDriverWait wait;
@@ -15,18 +17,19 @@ public class BasePage {
     protected Actions actions;
 
     public BasePage(WebDriver driver) {
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
         actions = new Actions(driver);
     }
+
 
 
     protected void click(WebElement element){
         wait.until(ExpectedConditions.visibilityOf(element)).click();
     }
 
-    protected void checkCorrectPageOpen(String heder){
-        Assert.assertTrue((driver.findElement(By.xpath("//h1")).isDisplayed()), "Заголовок не відображається");
-        Assert.assertEquals(heder, (driver.findElement(By.xpath("//h1")).getText()), "Ви не на очікуваній сторніці!");
+
+    protected void checkMenuItemPresent (List<WebElement> element){
+        Assert.assertTrue(element.size() > 0, "Потрібного пункту меню немає.");
     }
 
     protected void moveTo (WebElement element){

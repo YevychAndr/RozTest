@@ -1,8 +1,10 @@
 package pages;
 
 import model.MainMenu;
+import model.StaticPages;
 import model.SubMenu;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +14,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class AuthorizedPage extends BasePage  {
+public class AuthorizedPage extends BasePage  implements GenericStaticPage {
 
     public AuthorizedPage(WebDriver driver) {
         super(driver);
@@ -38,21 +40,12 @@ public class AuthorizedPage extends BasePage  {
     @FindBy(xpath = "//a[@name='cart']")
     public WebElement btnCart;
 
-    @FindBy(xpath = "//div[2]/ul[1]/li[1]/a[1]")
-    public WebElement linkQuestionAnswer;
 
-    @FindBy(xpath = "//div[2]/ul[1]/li[2]/a[1]")
-    public WebElement linkCredit;
+    @FindBy(css = "li.m-top-i")
+    public List<WebElement> staticPagesItem;
 
-    @FindBy(xpath = "//div[2]/ul[1]/li[3]/a[1]")
-    public WebElement linkShippingPayment;
-
-    @FindBy(xpath = "//div[2]/ul[1]/li[4]/a[1]")
-    public WebElement linkGuarantee;
-
-    @FindBy(xpath = "//div[2]/ul[1]/li[5]/a[1]")
-    public WebElement linkContacts;
-
+    @FindBy(xpath = "//h1")
+    public WebElement heder;
 
 
     public LoginPage callLoginPage() {
@@ -65,7 +58,6 @@ public class AuthorizedPage extends BasePage  {
     }
 
     public void checkLogged() {
-        //Thread.sleep(3000);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='popup-css popup-auth']")));
         Assert.assertTrue(btnProf.isDisplayed(), "Ви не залогінені");
     }
@@ -75,15 +67,18 @@ public class AuthorizedPage extends BasePage  {
     }
 
     public void openCategoryGoods(MainMenu menuToOpen){
+        checkMenuItemPresent(mainMenuItems);
         for (WebElement item: mainMenuItems){
             if(item.getAttribute("id").equals(menuToOpen.getElementId())){
                 moveTo(item);
                 return;
             }
         }
+
     }
 
     public GoodsPage openSubcategoryGoods(SubMenu subMenuToOpen) {
+        checkMenuItemPresent(subMenuItems);
         for (WebElement item: subMenuItems){
             if(item.getText().equals(subMenuToOpen.getElementText())){
                 click(item);
@@ -99,28 +94,28 @@ public class AuthorizedPage extends BasePage  {
         return new CartPage(driver);
     }
 
-    public QuestionAnswerPage callQuestionAnswer() {
-        click(linkQuestionAnswer);
-        return new QuestionAnswerPage(driver);
+
+
+    public GenericStaticPage openStaticPageFromTopMenu(StaticPages openStaticPageFromTopMenu) {
+        for (WebElement item: staticPagesItem){
+            if(item.getText().equals(openStaticPageFromTopMenu.getElementText())){
+                click(item);
+                return null;
+            }
+        }
+        return null;
     }
 
-    public CreditPage callCreditPage() {
-        click(linkCredit);
-        return new CreditPage(driver);
+    @Override
+    public void isPageOpened(String hederExpected) {
+        try {
+            Assert.assertEquals((heder.getText()), QuestionAnswerPage.hederExpected,  "Сторінка не та, що очікувалась");
+        }
+        catch (NoSuchElementException e){
+            return;
+        }
     }
 
-    public ShippingPaymenPage callShippingPaymen() {
-        click(linkShippingPayment);
-        return new ShippingPaymenPage(driver);
-    }
 
-    public GuaranteePage callGuaranteePage() {
-        click(linkGuarantee);
-        return new GuaranteePage(driver);
-    }
 
-    public ContactsPage callContactsPage() {
-        click(linkContacts);
-        return new ContactsPage(driver);
-    }
 }
