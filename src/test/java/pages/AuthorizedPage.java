@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import model.MainMenu;
 import model.StaticPages;
 import model.SubMenu;
@@ -53,10 +54,12 @@ public class AuthorizedPage extends BasePage  implements GenericStaticPage {
         return new LoginPage(driver);
     }
 
+    @Step("Перевіряємо чи не залогінені")
     public void checkNotLogged (){
         Assert.assertEquals("войдите в личный кабинет", btnLogin.getText(), "Ви вже залогінені.");
     }
 
+    @Step("Перевіряємо чи залогінені")
     public void checkLogged() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='popup-css popup-auth']")));
         Assert.assertTrue(btnProf.isDisplayed(), "Ви не залогінені");
@@ -105,17 +108,16 @@ public class AuthorizedPage extends BasePage  implements GenericStaticPage {
         }
         return null;
     }
-
+    @Step("Перевіряємо чи та сторінка відкрита")
     @Override
     public void isPageOpened(String hederExpected) {
         try {
-            Assert.assertEquals((heder.getText()), QuestionAnswerPage.hederExpected,  "Сторінка не та, що очікувалась");
+            Assert.assertEquals((heder.getText()), hederExpected,  "Сторінка не та, що очікувалась");
         }
         catch (NoSuchElementException e){
             return;
         }
+
     }
-
-
 
 }

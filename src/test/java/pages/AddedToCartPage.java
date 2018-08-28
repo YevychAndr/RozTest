@@ -33,13 +33,27 @@ public class AddedToCartPage extends BasePage {
 
     public GoodsPage continueShopping() {
 
+        Function<WebDriver, Boolean> closeWindow = driver -> {
+            try {
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='cart-popup']")));
+                click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("close"))));
+                return false;
+            }
+            catch (Exception e) {
+                return true;
+            }
+        };
+
+        wait.until(closeWindow);
+
+        /*
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         click(closeAddedToCartPage);
-
+*/
         return new GoodsPage(driver);
     }
 

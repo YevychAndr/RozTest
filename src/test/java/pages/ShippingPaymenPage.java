@@ -10,6 +10,6 @@ public class ShippingPaymenPage extends BasePage {
         this.driver = driver;
     }
 
-    public static String hederExpected = "Доставка и оплата";
+    public static final String hederExpected = "Доставка и оплата";
 
 }

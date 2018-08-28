@@ -1,6 +1,45 @@
-plugins {
-    id 'java'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.5"
+    }
 }
+
+apply plugin: 'io.qameta.allure'
+apply plugin: 'java'
+
+defaultTasks 'clean', 'test'
+
+
+allure {
+    version = '2.2.1'
+    autoconfigure = false
+    aspectjweaver = true
+    aspectjVersion = "1.8.11"
+    reportDir = file('../../allure-report')
+    resultsDir = file('../../allure-results')
+    downloadLink = 'https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.2.1/allure-2.2.1.zip'
+
+    useTestNG {
+        version = '2.6.0'
+         }
+
+}
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.encoding = 'UTF-8'
+}
+
 
 group 'qatestlab'
 version '1.0-SNAPSHOT'
@@ -9,12 +48,23 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+
 }
 
 dependencies {
-    testCompile  group: 'org.testng', name: 'testng', version: '6.8.8'
+    compile  group: 'org.testng', name: 'testng', version: '6.14.3'
     compile 'org.seleniumhq.selenium:selenium-java:3.14.0'
+    compile "io.qameta.allure:allure-testng:2.7.0"
+    compile 'org.slf4j:slf4j-nop:1.7.25'
+
 }
+
 test {
     useTestNG()
+            {
+        suites '/testng.xml'
+    }
+
+    finalizedBy('allureReport')
 }
+

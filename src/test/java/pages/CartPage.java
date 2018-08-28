@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +33,7 @@ public class CartPage extends BasePage{
     @FindBy(name = "delete")
     public WebElement delWithoutSave;
 
-
+    @Step("Перевіряємо правильність сумми в корзині")
     public void checkSumCart(){
         int sum = 0;
         for (int i = 0; i < listPrice.size(); i++) {
@@ -42,10 +43,17 @@ public class CartPage extends BasePage{
         Assert.assertEquals(realCostGoods, sum, "Загальна сума, вказана вкорзині НЕ відповідає сумі цін, всіх добавлених.");
     }
 
-    public CartPage dellAllGoods()  {
+    public CartPage dellAllGoods() {
         int k = listPrice.size();
         {
             for (int i = 0; i < k; i++) {
+                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//img[@alt='✓'])[1]")));
+                    click(wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//img[@alt='✓'])[1]"))));
+                    click(wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("delete"))));
+                    WebElement closeSendingWindow = driver.findElement(By.cssSelector("img[alt=\"Отправка данных\"]"));
+                    wait.until(ExpectedConditions.stalenessOf(closeSendingWindow));
+
+                /*
                 click(delGoods);
                 click(delWithoutSave);
                 try {
@@ -53,11 +61,15 @@ public class CartPage extends BasePage{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                */
             }
         }
-        return null;
-    }
 
+
+
+        return new CartPage(driver);
+
+    }
     public void checkCartEmpty() {
         Assert.assertTrue((listPrice).isEmpty(), "Корзина НЕ пуста.");
         }

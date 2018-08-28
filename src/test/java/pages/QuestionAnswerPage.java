@@ -10,7 +10,7 @@ public class QuestionAnswerPage extends BasePage {
         super(driver);
     }
 
-    public static String hederExpected = "Вопросы и ответы";
+    public static final String hederExpected = "Вопросы и ответы";
 
 
 }
