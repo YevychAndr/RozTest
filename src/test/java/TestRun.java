@@ -23,7 +23,7 @@ public class TestRun extends BaseTest{
         LoginPage loginPage = authorizedPage.callLoginPage();
         loginPage.login(login, password);
         authorizedPage.checkLogged();
-
+/*
         authorizedPage.openCatalogGoods();
         authorizedPage.openCategoryGoods(MainMenu.SPORT);
         GoodsPage goodsPage = authorizedPage.openSubcategoryGoods(SubMenu.COIL);
@@ -45,7 +45,7 @@ public class TestRun extends BaseTest{
         cartPage.dellAllGoods();
 
         cartPage.checkCartEmpty();
-
+*/
         GenericStaticPage questionAnswerPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.QUESTIONANSWER);
         authorizedPage.isPageOpened(QuestionAnswerPage.hederExpected);
         GenericStaticPage creditPage = authorizedPage.openStaticPageFromTopMenu(StaticPages.CREDIT);

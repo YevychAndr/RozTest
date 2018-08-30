@@ -1,0 +1,100 @@
+{
+  "statistic" : {
+    "failed" : 0,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 1,
+    "unknown" : 0,
+    "total" : 1
+  },
+  "time" : {
+    "minDuration" : 15010,
+    "maxDuration" : 15010,
+    "sumDuration" : 15010,
+    "start" : 1535618570274,
+    "stop" : 1535618585284,
+    "duration" : 15010
+  },
+  "children" : [ {
+    "uid" : "27fe72b17f7da2f8",
+    "name" : "All Test Suite",
+    "time" : {
+      "minDuration" : 15010,
+      "maxDuration" : 15010,
+      "sumDuration" : 15010,
+      "start" : 1535618570274,
+      "stop" : 1535618585284,
+      "duration" : 15010
+    },
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "type" : "TestGroupNode",
+    "children" : [ {
+      "uid" : "89d830be79a32d7e",
+      "name" : "tesngTest",
+      "time" : {
+        "minDuration" : 15010,
+        "maxDuration" : 15010,
+        "sumDuration" : 15010,
+        "start" : 1535618570274,
+        "stop" : 1535618585284,
+        "duration" : 15010
+      },
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 1
+      },
+      "type" : "TestGroupNode",
+      "children" : [ {
+        "uid" : "9ec481c70d014b3b",
+        "name" : "TestRun",
+        "time" : {
+          "minDuration" : 15010,
+          "maxDuration" : 15010,
+          "sumDuration" : 15010,
+          "start" : 1535618570274,
+          "stop" : 1535618585284,
+          "duration" : 15010
+        },
+        "statistic" : {
+          "failed" : 0,
+          "broken" : 0,
+          "skipped" : 0,
+          "passed" : 1,
+          "unknown" : 0,
+          "total" : 1
+        },
+        "type" : "TestGroupNode",
+        "children" : [ {
+          "uid" : "ec7991cd84bfe43a",
+          "name" : "test",
+          "time" : {
+            "start" : 1535618570274,
+            "stop" : 1535618585284,
+            "duration" : 15010
+          },
+          "status" : "passed",
+          "flaky" : false,
+          "type" : "TestCaseNode",
+          "parameters" : [ {
+            "name" : "arg0",
+            "value" : "yevych.a@ya.ru"
+          }, {
+            "name" : "arg1",
+            "value" : "Vvs1983"
+          } ]
+        } ]
+      } ]
+    } ]
+  } ]
+}

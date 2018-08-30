@@ -1,0 +1,209 @@
+{
+  "uid" : "ec7991cd84bfe43a",
+  "name" : "test",
+  "fullName" : "TestRun.test",
+  "historyId" : "580e59b4516c2d9492e0a0760c26782a",
+  "time" : {
+    "start" : 1535618570274,
+    "stop" : 1535618585284,
+    "duration" : 15010
+  },
+  "status" : "passed",
+  "statusDetails" : {
+    "flaky" : false
+  },
+  "beforeStages" : [ {
+    "name" : "start",
+    "time" : {
+      "start" : 1535618536922,
+      "stop" : 1535618569931,
+      "duration" : 33009
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "statusDetails" : {
+      "flaky" : false
+    },
+    "steps" : [ {
+      "name" : "Перевіряємо чи не залогінені",
+      "time" : {
+        "start" : 1535618570645,
+        "stop" : 1535618570734,
+        "duration" : 89
+      },
+      "status" : "passed",
+      "hasContent" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ]
+    }, {
+      "name" : "Перевіряємо чи залогінені",
+      "time" : {
+        "start" : 1535618571334,
+        "stop" : 1535618577154,
+        "duration" : 5820
+      },
+      "status" : "passed",
+      "hasContent" : false,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ]
+    }, {
+      "name" : "Перевіряємо чи та сторінка відкрита",
+      "time" : {
+        "start" : 1535618578483,
+        "stop" : 1535618578595,
+        "duration" : 112
+      },
+      "status" : "passed",
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "hederExpected",
+        "value" : "Вопросы и ответы"
+      } ]
+    }, {
+      "name" : "Перевіряємо чи та сторінка відкрита",
+      "time" : {
+        "start" : 1535618579925,
+        "stop" : 1535618580021,
+        "duration" : 96
+      },
+      "status" : "passed",
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "hederExpected",
+        "value" : "Покупка в кредит"
+      } ]
+    }, {
+      "name" : "Перевіряємо чи та сторінка відкрита",
+      "time" : {
+        "start" : 1535618582220,
+        "stop" : 1535618582261,
+        "duration" : 41
+      },
+      "status" : "passed",
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "hederExpected",
+        "value" : "Доставка и оплата"
+      } ]
+    }, {
+      "name" : "Перевіряємо чи та сторінка відкрита",
+      "time" : {
+        "start" : 1535618583416,
+        "stop" : 1535618583677,
+        "duration" : 261
+      },
+      "status" : "passed",
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "hederExpected",
+        "value" : "Гарантия и сервисное обслуживание"
+      } ]
+    }, {
+      "name" : "Перевіряємо чи та сторінка відкрита",
+      "time" : {
+        "start" : 1535618585236,
+        "stop" : 1535618585281,
+        "duration" : 45
+      },
+      "status" : "passed",
+      "hasContent" : true,
+      "attachmentsCount" : 0,
+      "stepsCount" : 0,
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "hederExpected",
+        "value" : "Консультации и заказ по телефонам"
+      } ]
+    } ],
+    "attachments" : [ ],
+    "hasContent" : true,
+    "attachmentsCount" : 0,
+    "stepsCount" : 7
+  },
+  "afterStages" : [ {
+    "name" : "stop",
+    "time" : {
+      "start" : 1535618585321,
+      "stop" : 1535618586033,
+      "duration" : 712
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "attachmentsCount" : 0,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "package",
+    "value" : "TestRun"
+  }, {
+    "name" : "testClass",
+    "value" : "TestRun"
+  }, {
+    "name" : "testMethod",
+    "value" : "test"
+  }, {
+    "name" : "parentSuite",
+    "value" : "All Test Suite"
+  }, {
+    "name" : "suite",
+    "value" : "tesngTest"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestRun"
+  }, {
+    "name" : "host",
+    "value" : "a-yevich-pc"
+  }, {
+    "name" : "thread",
+    "value" : "10492@a-yevich-pc.Test worker(11)"
+  } ],
+  "parameters" : [ {
+    "name" : "arg0",
+    "value" : "yevych.a@ya.ru"
+  }, {
+    "name" : "arg1",
+    "value" : "Vvs1983"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  }
+}
