@@ -17,7 +17,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/hromedriver");
+        System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
