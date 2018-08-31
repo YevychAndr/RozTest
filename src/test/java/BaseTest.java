@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -17,8 +18,10 @@ public class BaseTest {
 
     @BeforeMethod
     public void start() {
-        System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/chromedriver");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "/home/ayevych/chromedriver/geckodriver");
+        //System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/chromedriver");
+        driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
         //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //driver.manage().window().maximize();
         driver.navigate().to(" https://www.rozetka.com.ua/");
