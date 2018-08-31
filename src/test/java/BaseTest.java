@@ -18,10 +18,10 @@ public class BaseTest {
 
     @BeforeMethod
     public void start() {
-        //System.setProperty("webdriver.gecko.driver", "/home/ayevych/chromedriver/geckodriver");
-        System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/chromedriver");
-        //driver = new FirefoxDriver();
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "/home/ayevych/chromedriver/geckodriver");
+        //System.setProperty("webdriver.chrome.driver", "/home/ayevych/chromedriver/chromedriver");
+        driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
         //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //driver.manage().window().maximize();
         driver.navigate().to(" https://www.rozetka.com.ua/");
